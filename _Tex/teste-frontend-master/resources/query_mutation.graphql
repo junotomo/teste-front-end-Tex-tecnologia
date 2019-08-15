@@ -1,0 +1,42 @@
+query BuscaVeiculo($page: Int, $limit: Int, $query: String) {
+  buscaVeiculo(page: $page, limit: $limit, query: $query) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      pages
+      page
+    }
+    total
+    edges {
+      node {
+        _id
+        marca
+        modelo
+        combustivel
+      }
+    }
+  }
+}
+
+query Veiculo($id: ID!) {
+  veiculo(id: $id) {
+    _id
+    marca
+    modelo
+    ano_modelo
+    vendido
+    descricao
+  }
+}
+
+mutation CreateVeiculo($data: VeiculoInput!) {
+  createVeiculo(data: $data)
+}
+
+mutation UpdateVeiculo($data: VeiculoInput!, $id: ID!) {
+  updateVeiculo(data: $data, id: $id)
+}
+
+mutation DeleteVeiculo($id: ID!) {
+  deleteVeiculo(id: $id)
+}
